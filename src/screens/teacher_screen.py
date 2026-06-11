@@ -9,11 +9,27 @@ def teacher_screen():
     style_background_dashboard()
     style_base_layout()
     
+    teacher_screen_login()
+    
+
+def teacher_screen_login():
     c1,c2=st.columns(2,vertical_alignment="center",gap='xxlarge')
     
     with c1:
         header_dashboard()
     with c2:
         st.button("Go Back to Home", type='secondary',key='loginbackbtn',shortcut='ctrl+backspace')
-    st.title("Teacher Screen")
-    st.write("Welcome to the teacher screen!")
+        
+    st.header("Login with password",text_align="center")
+    
+
+
+def teacher_screen_register():
+    c1,c2=st.columns(2,vertical_alignment="center",gap='xxlarge')
+    
+    with c1:
+        header_dashboard()
+    with c2:
+        st.button("Go Back to Home", type='secondary',key='loginbackbtn',shortcut='ctrl+backspace')
+        
+    st.header("Register your teacher profile",text_align="center")
