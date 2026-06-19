@@ -15,13 +15,13 @@ def enroll_dialog():
             res = supabase.table('subjects').select('subject_id, name, subject_code').eq('subject_code', join_code).execute()
             if res.data:
                 subject = res.data[0]
-                student_id = st.session_state.student_data['student_id']
+                student_id = st.session_state.student_data['students_id']
 
-                check = supabase.table('subject_students').select('*').eq('subject_id', subject['subject_id']).eq('student_id', student_id).execute()
+                check = supabase.table('subject_students').select('*').eq('subjects_id', subject['subjects_id']).eq('students_id', student_id).execute()
                 if check.data:
                     st.warning('You are already enrolled in this program')
                 else:
-                    enroll_student_to_subject(student_id, subject['subject_id'])
+                    enroll_student_to_subject(student_id, subject['subjects_id'])
                     st.success('Succesfully enrolled!')
                     time.sleep(1)
                     st.rerun()
