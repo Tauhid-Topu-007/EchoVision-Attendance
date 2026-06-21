@@ -1,22 +1,46 @@
 import streamlit as st
+
 def subject_card(name, code, section, stats=None, footer_callback=None):
-    html = f"""
-        <div style="background:white; border-left: 8px solid #EB459E; padding:25px; border-radius: 20px; border: 1px solid black; margin-bottom:20px;">
-        <h3 style="margin:0; color: #1e293b; font-size: 1.5rem ">{name}</h3>
-        <p style="color:#64748b; margin:10px 0;">Code : <span style="background:#E0E3FF; color:#5865F2; padding:2px 8px; border-radius:5px;">{code} </span> | Section : {section}</p>
-        
-        """
+    """Subject card using pure Streamlit components - Most Reliable"""
     
-    if stats:
-        html+= """
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        """
-        for icon, label, value in stats:
-            html+= f'<div style="background: #EB459E10; padding:5px 12px; border-radius:12px; font-size:0.9rem">{icon} <b>{value}</b> {label} </div>'
+    # Card using native Streamlit components
+    with st.container():
+        # Use columns for header
+        col1, col2 = st.columns([4, 1])
         
-        html+= "</div>"
-
-    st.markdown(html, unsafe_allow_html=True)
-
-    if footer_callback:
-        footer_callback()
+        with col1:
+            st.markdown(f"### {name}")
+            st.caption(f"Code: `{code}` | Section: {section}")
+        
+        with col2:
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%); 
+                        color: white; 
+                        padding: 4px 12px; 
+                        border-radius: 50px; 
+                        text-align: center; 
+                        font-size: 0.75rem; 
+                        font-weight: 600;
+                        display: inline-block;
+                        float: right;">
+                Active
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # Stats using columns
+        if stats:
+            cols = st.columns(len(stats))
+            for idx, (icon, label, value) in enumerate(stats):
+                with cols[idx]:
+                    st.metric(
+                        label=f"{icon} {label}",
+                        value=value,
+                        label_visibility="visible"
+                    )
+        
+        # Divider
+        st.divider()
+        
+        # Footer callback
+        if footer_callback:
+            footer_callback()

@@ -1,3 +1,4 @@
+streamlit
 numpy
 pandas
 
@@ -9,10 +10,10 @@ setuptools<70.0.0
 
 supabase
 bcrypt
- 
+torch
 segno
 pillow
 
-streamlit
+
 librosa
 resemblyzer
