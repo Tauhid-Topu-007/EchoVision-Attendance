@@ -52,34 +52,6 @@
 | 🔒 Proxy attendance | Possible | Eliminated |
 | 📈 Analytics | Manual | Real-time |
 
----
-
-## 🏗️ Architecture
-┌─────────────────────────────────────────────────────────────────┐
-│                    STREAMLIT FRONTEND                          │
-│                    (Teacher & Student Dashboards)              │
-└─────────────────────────────┬───────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   PYTHON BUSINESS LOGIC                        │
-│    Face Recognition Pipeline → Voice Biometrics Pipeline       │
-│                         Database Operations                    │
-└─────────────────────────────┬───────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   AI/ML PROCESSING LAYER                       │
-│   dlib (128-d Face Emb) → Resemblyzer (512-d Voice Emb)       │
-│                    Scikit-learn SVC Classifier                 │
-└─────────────────────────────┬───────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   SUPABASE DATABASE LAYER                      │
-│   PostgreSQL with RLS → Real-time Subscriptions               │
-│                    Secure Authentication (JWT)                 │
-└─────────────────────────────────────────────────────────────────┘
 
 ---
 
@@ -117,47 +89,6 @@
 
 ---
 
-## 📁 Project Structure
-echovision-attendance/
-├── app.py # Main application entry
-├── requirements.txt # Python dependencies
-├── .env.example # Environment variables template
-├── .gitignore # Git ignore rules
-│
-├── src/
-│ ├── screens/ # Page components
-│ │ ├── home_screen.py
-│ │ ├── teacher_screen.py
-│ │ └── student_screen.py
-│ │
-│ ├── components/ # Reusable components
-│ │ ├── header.py
-│ │ ├── footer.py
-│ │ ├── subject_card.py
-│ │ └── dialog_*.py # Dialog components
-│ │
-│ ├── database/ # Database operations
-│ │ ├── config.py
-│ │ └── db.py
-│ │
-│ ├── pipelines/ # AI pipelines
-│ │ ├── face_pipeline.py
-│ │ └── voice_pipeline.py
-│ │
-│ └── ui/ # UI styling
-│ └── base_layout.py
-│
-├── tests/ # Unit tests
-│ ├── test_db.py
-│ └── test_pipelines.py
-│
-└── docs/ # Documentation
-├── api.md
-├── deployment.md
-└── contributing.md
-
-
----
 
 ## 🚀 Quick Start
 
